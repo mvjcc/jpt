@@ -24,6 +24,16 @@ public class Contact extends Model {
 	public String skypeId;			// val="Skype ID"
 	public String lastActivityTime;	// val="Last Activity Time"
 	public String twitter;			// val="Twitter"
+	public String tag;				// val="Tag"
+	
+	@ManyToMany
+	Set<Tag> tags;
+//	@ManyToMany
+//	@JoinTable(
+//	  name = "contacts_tags", 
+//	  joinColumns = @JoinColumn(name = "contact_id"), 
+//	  inverseJoinColumns = @JoinColumn(name = "tag_id"))
+//	Set<Tag> tags;
 
 	public Contact(
 			String fname,
@@ -40,7 +50,8 @@ public class Contact extends Model {
 			boolean emailOptOut,
 			String skypeId,
 			String lastActivityTime,
-			String twitter
+			String twitter,
+			String tag
 			) {
 		this.fname = fname;
 		this.lname = lname;
@@ -57,6 +68,7 @@ public class Contact extends Model {
 		this.skypeId = skypeId;
 		this.lastActivityTime = lastActivityTime;
 		this.twitter = twitter;
+		this.tag = tag;
 	}
 
 }
