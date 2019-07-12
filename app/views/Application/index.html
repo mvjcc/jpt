@@ -1,33 +1,28 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
+#{set title:'Get Zoho Contacts' /}
 
-#{welcome /}
+<div class="col-md-12" style="margin-bottom: 5em;">
+	<div class="row">
+		<div class="col-md-8">
+			<h3>Retrieve Zoho Contacts by Tag</h3>
+		</div>
+		<div class="col-md-4">
+			#{form @Application.show(), class:"form-inline my-2 my-lg-0"}
 
-<!--
-#{extends 'main.html' /}
-#{set title:'Home' /}
- 
-#{if frontPost}
-    
-    #{display post:frontPost, as:'home' /}
-    
-    #{if olderPosts.size()}
-    
-        <div class="older-posts">
-            <h3>Older posts <span class="from">from this blog</span></h3>
-        
-            #{list items:olderPosts, as:'oldPost'}
-               #{display post:oldPost, as:'teaser' /}
-            #{/list}
-        </div>
+				#{ifErrors}
+					<p class="error">
+						${errors[0]}
+					</p>
+				#{/ifErrors}
+			
+					<div class="row">
+						<input class="form-control mr-sm-2" type="search" id="tag" name="tag" placeholder="Enter Tag" value="${params.tag}" />
+						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+					</div>
+			#{/form}
+		</div>
+	</div>
+</div>
 
-    #{/if}
 
-#{/if}
 
-#{else}
-    <div class="empty">
-        There is currently nothing to read here.
-    </div>
-#{/else}
- -->

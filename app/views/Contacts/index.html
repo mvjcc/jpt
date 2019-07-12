@@ -1,0 +1,44 @@
+#{extends 'main.html' /}
+#{set title:'Get Zoho Contacts' /}
+
+<div class="col-md-12" style="margin-bottom: 5em;">
+	<div class="row">
+		<div class="col-md-10" style="padding-left: 0 !important">
+			<h3>DB Contacts</h3>
+		</div>
+		<div class="col-md-2" style="padding-right: 0 !important">
+			#{form @Contacts.show(), class:"form-inline my-2 my-lg-0"}
+
+				#{ifErrors}
+					<p class="error">
+						${errors[0]}
+					</p>
+				#{/ifErrors}
+			
+				<div class="row">
+					<div class="dropdown">
+						<select name="id" id="id" class="form-control">
+							<option value="">Select Tag</option>
+							#{list items:tags, as:'tag'}
+							<option class="dropdown-item" value="${tag.id}">${tag.name}</option>
+							#{/list}
+						</select>
+					</div>
+					<button class="btn btn-outline-success my-2 my-sm-0" id="search" type="submit">Search</button>
+				</div>
+			#{/form}
+		</div>
+	</div>
+</div>
+
+#{set 'js'}
+<script>
+	$('#id').on('change', function() {
+		if($('#id').val() == "") {
+			$('#search').prop('disabled', true);
+		} else {
+			$('#search').prop('disabled', false);
+		}
+	});
+</script>
+#{/set}

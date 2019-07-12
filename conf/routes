@@ -13,3 +13,11 @@ GET     /public/                                staticDir:public
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
+
+# Contacts Index
+GET     /contacts                               Contacts.index
+GET     /contacts/                              Contacts.index
+
+# Show Contacts
+GET     /contacts/show                          Contacts.show
+

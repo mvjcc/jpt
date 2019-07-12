@@ -4,13 +4,50 @@
     <head>
         <title>#{get 'title' /}</title>
         <meta charset="${_response_encoding}">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="HandheldFriendly" content="true">
         <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
-        #{get 'moreStyles' /}
+        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/bootstrap.min.css'}">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
-        <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
-        #{get 'moreScripts' /}
     </head>
     <body>
-        #{doLayout /}
+    	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 1em;">
+			<a class="navbar-brand" href="/">Zoho Contacts</a>
+
+			
+			<a class="navbar-brand" href="/contacts">DB Contacts</a>
+
+
+			<!--
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="/contacts">DB Contacts <span class="sr-only">(current)</span></a>
+					</li>
+				</ul>
+			</div>
+			-->
+		</nav>
+
+    	<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+	        		#{doLayout /}
+	        	</div>
+	        </div>
+		</div>
+		
+        <script src="@{'/public/javascripts/jquery-3.4.1.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="@{'/public/javascripts/bootstrap.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+		    $(document).ready(function() {
+		    	$('#contacts-table').DataTable();
+		    	$('#search').prop('disabled', true);
+		    });
+		</script>
+		#{get 'js' /}
     </body>
 </html>

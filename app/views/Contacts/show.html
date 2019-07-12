@@ -1,0 +1,81 @@
+#{extends 'main.html' /}
+#{set title:'Get Zoho Contacts' /}
+
+<div class="col-md-12" style="margin-bottom: 5em;">
+	<div class="row">
+		<div class="col-md-10" style="padding-left: 0 !important">
+			<h3>DB Contacts</h3>
+		</div>
+		<div class="col-md-2" style="padding-right: 0 !important">
+			#{form @Contacts.show(), class:"form-inline my-2 my-lg-0"}
+
+				#{ifErrors}
+					<p class="error">
+						${errors[0]}
+					</p>
+				#{/ifErrors}
+				
+				<div class="row">
+					<div class="float-right">
+						<select name="id" class="form-control">
+							<option value="">Select Tag</option>
+							#{list items:tags, as:'tag'}
+							<option class="dropdown-item" value="${tag.id}">${tag.name}</option>
+							#{/list}
+						</select>
+						<button class="btn btn-outline-success my-2 my-sm-0" id="search" type="submit">Search</button>
+					</div>
+				</div>
+			#{/form}
+		</div>
+	</div>
+</div>
+
+<table id="contacts-table">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Title</th>
+			<th>Email</th>
+			<th>Phone</th>
+			<th>Mobile</th>
+			<th>Address</th>
+			<th>Email Opt Out</th>
+			<th>Skype ID</th>
+			<th>Last Activity Time</th>
+			<th>Twitter</th>
+		</tr>
+	</thead>
+	<tbody>
+		#{if contacts}
+			#{list contacts, as:'contact'}
+			<tr>
+    			<td>${contact.fname} ${contact.lname}</td>
+    			<td>${contact.title}</td>
+    			<td>${contact.email}</td>
+    			<td>${contact.title}</td>
+    			<td>${contact.phone}</td>
+    			<td>${contact.mobile}</td>
+    			<td>${contact.mailingStreet}, ${contact.mailingCity}, ${contact.mailingState} ${contact.mailingZip}, ${contact.mailingCountry}</td>
+    			<td>${contact.emailOptOut}</td>
+    			<td>${contact.skypeId}</td>
+    			<td>${contact.lastActivityTime}</td>
+    			<td>${contact.twitter}</td>
+    		</tr>
+    		#{/list}
+		#{/if}
+	</tbody>
+</table>
+
+#{set 'js'}
+<script>
+	$('#id').on('change', function() {
+		if($('#id').val() == "") {
+			$('#search').prop('disabled', true);
+		} else {
+			$('#search').prop('disabled', false);
+		}
+	});
+</script>
+#{/set}
+
